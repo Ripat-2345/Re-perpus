@@ -23,7 +23,7 @@
         <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manajemen User</h6>
-                <a class="collapse-item" href="./Petugas_tbl.php">Manajemen Petugas</a>
+                <a class="collapse-item" href="./petugas_tbl.php">Manajemen Petugas</a>
                 <a class="collapse-item" href="./siswa_tbl.php">Manajemen Siswa</a>
             </div>
         </div>
