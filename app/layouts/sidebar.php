@@ -7,7 +7,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="./dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -23,8 +23,8 @@
         <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manajemen User</h6>
-                <a class="collapse-item" href="../../Petugas_tbl.php">Manajemen Petugas</a>
-                <a class="collapse-item" href="../../siswa_tbl.php">Manajemen Siswa</a>
+                <a class="collapse-item" href="./Petugas_tbl.php">Manajemen Petugas</a>
+                <a class="collapse-item" href="./siswa_tbl.php">Manajemen Siswa</a>
             </div>
         </div>
     </li>
@@ -37,14 +37,14 @@
         <div id="collapsePerpustakaan" class="collapse" aria-labelledby="headingPerpustakaan" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manajemen Perpustakaan</h6>
-                <a class="collapse-item" href="../../buku_tbl.php">Manajemen Buku</a>
-                <a class="collapse-item" href="../../kategori_tbl.php">Manajemen Kategori Buku</a>
-                <a class="collapse-item" href="../../peminjaman_tbl.php">Manajemen Peminjaman</a>
+                <a class="collapse-item" href="./buku_tbl.php">Manajemen Buku</a>
+                <a class="collapse-item" href="./kategori_tbl.php">Manajemen Kategori Buku</a>
+                <a class="collapse-item" href="./peminjaman_tbl.php">Manajemen Peminjaman</a>
             </div>
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="./history">
             <i class="fas fa-history"></i>
             <span>History</span>
         </a>

@@ -1,6 +1,9 @@
 <?php
 include('./config/functions/functionSiswa.php');
-$siswa = query("SELECT * FROM siswa");
+
+$id = $_GET['id_siswa'];
+
+$detailSiswa = detail($id);
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +36,7 @@ $siswa = query("SELECT * FROM siswa");
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manajemen Siswa</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Detail Siswa</h1>
                     </div>
 
                     <!--Row-->
@@ -41,32 +44,37 @@ $siswa = query("SELECT * FROM siswa");
                         <div class="col-lg-12 mb-4">
                             <!-- Simple Tables -->
                             <div class="card">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Siswa</h6>
-                                    <a href="./siswa_tambah.php" class="btn btn-primary">Tambah Siswa</a>
-                                </div>
-                                <div class="table-responsive">
+                                <div class="table-responsive mt-4">
                                     <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>NIS</th>
-                                                <th>Nama</th>
-                                                <th>Kelas</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
                                         <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($siswa as $dataSiswa) : ?>
-                                                <tr>
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $dataSiswa['nis']; ?></td>
-                                                    <td><?= $dataSiswa['nama_siswa']; ?></td>
-                                                    <td><?= $dataSiswa['kelas']; ?></td>
-                                                    <td><a href="siswa_detail.php?id_siswa=<?= $dataSiswa['id_siswa']; ?>" class="btn btn-sm btn-info">Detail</a></td>
-                                                </tr>
-                                            <?php endforeach; ?>
+                                            <tr>
+                                                <th style="width:250px;">NIS</th>
+                                                <td>: <?= $detailSiswa['nis']; ?></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">Nama</th>
+                                                <td>: <?= $detailSiswa['nama_siswa']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">Kelas</th>
+                                                <td>: <?= $detailSiswa['kelas']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">No Telp</th>
+                                                <td>: <?= $detailSiswa['no_telp']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">Username</th>
+                                                <td>: <?= $detailSiswa['username']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">Password</th>
+                                                <td>: <?= $detailSiswa['password']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="text-right"><a href="siswa_ubah.php?id_siswa=<?= $detailSiswa['id_siswa']; ?>" class="btn btn-warning">Ubah</a> <a href="siswa_hapus.php?id_siswa=<?= $detailSiswa['id_siswa']; ?>" class="btn btn-danger" onclick="return confirm('Yakin!')">Hapus</a></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
