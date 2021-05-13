@@ -14,7 +14,7 @@ if (hapus($id) > 0) {
     echo "
     <script>
         alert('Data gagal dihapus!');
-        document.location.href = 'siswa_tambah.php';
+        document.location.href = 'siswa_detail.php';
     </script>
 ";
 }
