@@ -1,6 +1,6 @@
 <?php
 include('./config/functions/functionBuku.php');
-$buku = query("SELECT * FROM buku");
+$buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori");
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +67,9 @@ $buku = query("SELECT * FROM buku");
                                                     <td><?= $dataBuku['judul']; ?></td>
                                                     <td><?= $dataBuku['penerbit']; ?></td>
                                                     <td><?= $dataBuku['pencipta']; ?></td>
-                                                    <td><?= $dataBuku['id_kategori']; ?></td>
+                                                    <td><?= $dataBuku['nama_kategori']; ?></td>
                                                     <td><?= $dataBuku['jumlah_buku']; ?></td>
-                                                    <td><a href="buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-info">Detail</a></td>
+                                                    <td><a href="buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-info">Detail</a> <a href="peminjaman_tambah.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-warning">Pinjam</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>

@@ -17,7 +17,7 @@ function detail($id)
 {
 
     global $conn;
-    $result = mysqli_query($conn, "SELECT * FROM buku WHERE id_buku = '$id'");
+    $result = mysqli_query($conn, "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori WHERE id_buku = '$id'");
 
     $row = mysqli_fetch_assoc($result);
 

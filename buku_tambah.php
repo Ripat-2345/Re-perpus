@@ -85,13 +85,11 @@ if (isset($_POST['submit'])) {
                                                     <option>-- Pilih --</option>
                                                     <?php foreach ($dataKategori as $dataKategori) : ?>
                                                         <option value="<?= $dataKategori['id_kategori']  ?>"><?= $dataKategori['nama_kategori'] ?></option>
-
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="jumlah_buku">Jumlah </label>
+                                                <label for="jumlah_buku">Jumlah Buku</label>
                                                 <input type="number" class="form-control" id="jumlah_buku" name="jumlah_buku" required>
                                             </div>
 

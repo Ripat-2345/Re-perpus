@@ -39,7 +39,6 @@
                 <h6 class="collapse-header">Manajemen Perpustakaan</h6>
                 <a class="collapse-item" href="./buku_tbl.php">Manajemen Buku</a>
                 <a class="collapse-item" href="./kategori_tbl.php">Manajemen Kategori Buku</a>
-                <a class="collapse-item" href="./peminjaman_tbl.php">Manajemen Peminjaman</a>
             </div>
         </div>
     </li>

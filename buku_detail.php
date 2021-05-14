@@ -48,7 +48,7 @@ $detailBuku = detail($id);
                                     <table class="table align-items-center table-flush">
                                         <tbody>
                                             <tr>
-                                                <th style="width:250px;">Judul</th>
+                                                <th style="width:250px;">Judul Buku</th>
                                                 <td>: <?= $detailBuku['judul']; ?></td>
                                             </tr>
                                             <tr>
@@ -60,12 +60,12 @@ $detailBuku = detail($id);
                                                 <td>: <?= $detailBuku['pencipta']; ?></td>
                                             </tr>
                                             <tr>
-                                                <th style="width:250px;">Id Kategori</th>
-                                                <td>: <?= $detailBuku['id_kategori']; ?></td>
+                                                <th style="width:250px;">Kategori</th>
+                                                <td>: <?= $detailBuku['nama_kategori']; ?></td>
                                             </tr>
 
                                             <tr>
-                                                <th style="width:250px;">Jumlah</th>
+                                                <th style="width:250px;">Jumlah Buku</th>
                                                 <td>: <?= $detailBuku['jumlah_buku']; ?></td>
                                             </tr>
                                             <tr>
