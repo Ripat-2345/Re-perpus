@@ -83,6 +83,15 @@ if (isset($_POST['submit'])) {
                                                 <label for="password">Password</label>
                                                 <input type="password" class="form-control" id="password" name="password" value="<?= $dataPetugas['password']; ?>" required>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="level">Level</label>
+                                                <select name="level" id="level" class="form-control">
+                                                    <option value="<?= $dataPetugas['level']; ?>">-- Pilih --</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Petugas</option>
+                                                </select>
+                                            </div>
+
                                             <input type="hidden" name="created_at" value="<?= $dataPetugas['created_at']; ?>">
                                             <button type="submit" name="submit" class="btn btn-success">Ubah</button>
                                         </form>

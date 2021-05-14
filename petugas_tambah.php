@@ -77,7 +77,14 @@ if (isset($_POST['submit'])) {
                                                 <label for="nama_petugas">Nama</label>
                                                 <input type="text" class="form-control" id="nama_petugas" name="nama_petugas" required>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label for="level">Level</label>
+                                                <select name="level" id="level" class="form-control">
+                                                    <option>-- Pilih --</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Petugas</option>
+                                                </select>
+                                            </div>
 
                                             <button type="submit" name="submit" class="btn btn-success">Tambah</button>
                                         </form>

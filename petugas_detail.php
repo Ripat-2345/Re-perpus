@@ -60,6 +60,10 @@ $detailPetugas = detail($id);
                                                 <td>: <?= $detailPetugas['password']; ?></td>
                                             </tr>
                                             <tr>
+                                                <th style="width:250px;">Password</th>
+                                                <td>: <?= $detailPetugas['level']; ?></td>
+                                            </tr>
+                                            <tr>
                                                 <td colspan="2" class="text-right">
                                                     <a href="petugas_ubah.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-warning">Ubah</a>
                                                     <a href="petugas_hapus.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-danger" onclick="return confirm('Yakin!')">Hapus</a>

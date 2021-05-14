@@ -31,7 +31,7 @@ function tambah($request)
     $nama_petugas = htmlspecialchars($request['nama_petugas']);
     $username = htmlspecialchars($request['username']);
     $password = password_hash(htmlspecialchars($request['password']), PASSWORD_DEFAULT);
-    $level = 'petugas';
+    $level = htmlspecialchars($request['level']);
 
     $query = "INSERT INTO petugas VALUES
             ('','$username','$password','$nama_petugas','$level',Now(),Now())";
@@ -49,7 +49,7 @@ function ubah($request)
     $nama_petugas = htmlspecialchars($request['nama_petugas']);
     $username = htmlspecialchars($request['username']);
     $password = password_hash(htmlspecialchars($request['password']), PASSWORD_DEFAULT);
-    $level = 'petugas';
+    $level = htmlspecialchars($request['level']);
     $created_at = $request['created_at'];
 
     $query = "UPDATE petugas SET
