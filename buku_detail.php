@@ -1,9 +1,9 @@
 <?php
-include('./config/functions/functionPetugas.php');
+include('./config/functions/functionBuku.php');
 
-$id = $_GET['id_petugas'];
+$id = $_GET['id_buku'];
 
-$detailPetugas = detail($id);
+$detailBuku = detail($id);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ $detailPetugas = detail($id);
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Detail Petugas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Detail Buku</h1>
                     </div>
 
                     <!--Row-->
@@ -48,25 +48,30 @@ $detailPetugas = detail($id);
                                     <table class="table align-items-center table-flush">
                                         <tbody>
                                             <tr>
-                                                <th style="width:250px;">Nama</th>
-                                                <td>: <?= $detailPetugas['nama_petugas']; ?></td>
+                                                <th style="width:250px;">Judul</th>
+                                                <td>: <?= $detailBuku['judul']; ?></td>
                                             </tr>
                                             <tr>
-                                                <th style="width:250px;">Username</th>
-                                                <td>: <?= $detailPetugas['username']; ?></td>
+                                                <th style="width:250px;">Penerbit</th>
+                                                <td>: <?= $detailBuku['penerbit']; ?></td>
                                             </tr>
                                             <tr>
-                                                <th style="width:250px;">Password</th>
-                                                <td>: <?= $detailPetugas['password']; ?></td>
+                                                <th style="width:250px;">Pencipta</th>
+                                                <td>: <?= $detailBuku['pencipta']; ?></td>
                                             </tr>
                                             <tr>
-                                                <th style="width:250px;">Level</th>
-                                                <td>: <?= $detailPetugas['level']; ?></td>
+                                                <th style="width:250px;">Id Kategori</th>
+                                                <td>: <?= $detailBuku['id_kategori']; ?></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th style="width:250px;">Jumlah</th>
+                                                <td>: <?= $detailBuku['jumlah_buku']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="text-right">
-                                                    <a href="petugas_ubah.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-warning">Ubah</a>
-                                                    <a href="petugas_hapus.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-danger" onclick="return confirm('Yakin!')">Hapus</a>
+                                                    <a href="buku_ubah.php?id_buku=<?= $detailBuku['id_buku']; ?>" class="btn btn-warning">Ubah</a>
+                                                    <a href="buku_hapus.php?id_buku=<?= $detailBuku['id_buku']; ?>" class="btn btn-danger" onclick="return confirm('Yakin!')">Hapus</a>
                                                 </td>
                                             </tr>
                                         </tbody>

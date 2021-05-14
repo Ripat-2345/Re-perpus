@@ -1,29 +1,26 @@
 <?php
-include('./config/functions/functionKategori.php');
-$id = $_GET['id_kategori'];
+include('./config/functions/functionBuku.php');
 
-$dataKategori = query("SELECT * FROM kategori WHERE id_kategori = $id")[0];
-
+$dataKategori = query("SELECT * FROM kategori");
 if (isset($_POST['submit'])) {
 
-    if (ubah($_POST) > 0) {
+    if (tambah($_POST) > 0) {
         echo "
             <script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'kategori_tbl.php';
+                alert('Data berhasil ditambah!');
+                document.location.href = 'buku_tbl.php';
             </script>
         ";
     } else {
         echo "
             <script>
-                alert('Data gagal diubah!');
-                document.location.href = 'kategori_ubah.php';
+                alert('Data gagal ditambah!');
+                document.location.href = 'buku_tambah.php';
             </script>
         ";
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +52,7 @@ if (isset($_POST['submit'])) {
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manajemen Kategori Buku</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manajemen Buku</h1>
                     </div>
 
                     <!--Row-->
@@ -66,19 +63,39 @@ if (isset($_POST['submit'])) {
                                 <!-- Form Basic -->
                                 <div class="card lg">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Ubah Kategori Buku</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Tambah Buku</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="POST">
-                                            <input type="hidden" name="id_kategori" value="<?= $dataKategori['id_kategori']; ?>">
                                             <div class="form-group">
-                                                <label for="nama_kategori">Nama Kategori</label>
-                                                <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required value="<?= $dataKategori['nama_kategori'] ?>">
+                                                <label for="judul">Judul</label>
+                                                <input type="text" class="form-control" id="judul" name="judul" required>
                                             </div>
-                                            <input type="hidden" name="created_at" value="<?= $dataKategori['created_at']; ?>">
+                                            <div class="form-group">
+                                                <label for="penerbit">Penerbit</label>
+                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pencipta">Pencipta</label>
+                                                <input type="text" class="form-control" id="pencipta" name="pencipta" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="id_kategori">Kategori</label>
+                                                <select name="id_kategori" id="id_kategori" class="form-control">
+                                                    <option>-- Pilih --</option>
+                                                    <?php foreach ($dataKategori as $dataKategori) : ?>
+                                                        <option value="<?= $dataKategori['id_kategori']  ?>"><?= $dataKategori['nama_kategori'] ?></option>
 
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
 
-                                            <button type="submit" name="submit" class="btn btn-success">Ubah</button>
+                                            <div class="form-group">
+                                                <label for="jumlah_buku">Jumlah </label>
+                                                <input type="number" class="form-control" id="jumlah_buku" name="jumlah_buku" required>
+                                            </div>
+
+                                            <button type="submit" name="submit" class="btn btn-success">Tambah</button>
                                         </form>
                                     </div>
                                 </div>

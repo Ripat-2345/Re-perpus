@@ -1,9 +1,6 @@
 <?php
-include('./config/functions/functionPetugas.php');
-
-$id = $_GET['id_petugas'];
-
-$detailPetugas = detail($id);
+include('./config/functions/functionBuku.php');
+$buku = query("SELECT * FROM buku");
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +33,7 @@ $detailPetugas = detail($id);
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Detail Petugas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manajemen BUKU</h1>
                     </div>
 
                     <!--Row-->
@@ -44,31 +41,37 @@ $detailPetugas = detail($id);
                         <div class="col-lg-12 mb-4">
                             <!-- Simple Tables -->
                             <div class="card">
-                                <div class="table-responsive mt-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Buku</h6>
+                                    <a href="./buku_tambah.php" class="btn btn-primary">Tambah Buku</a>
+
+                                </div>
+                                <div class="table-responsive">
                                     <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul</th>
+                                                <th>Penerbit</th>
+                                                <th>Pencipta</th>
+                                                <th>Id Kategori</th>
+                                                <th>Jumlah</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
-                                            <tr>
-                                                <th style="width:250px;">Nama</th>
-                                                <td>: <?= $detailPetugas['nama_petugas']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:250px;">Username</th>
-                                                <td>: <?= $detailPetugas['username']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:250px;">Password</th>
-                                                <td>: <?= $detailPetugas['password']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:250px;">Level</th>
-                                                <td>: <?= $detailPetugas['level']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="text-right">
-                                                    <a href="petugas_ubah.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-warning">Ubah</a>
-                                                    <a href="petugas_hapus.php?id_petugas=<?= $detailPetugas['id_petugas']; ?>" class="btn btn-danger" onclick="return confirm('Yakin!')">Hapus</a>
-                                                </td>
-                                            </tr>
+                                            <?php $no = 1; ?>
+                                            <?php foreach ($buku as $dataBuku) : ?>
+                                                <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= $dataBuku['judul']; ?></td>
+                                                    <td><?= $dataBuku['penerbit']; ?></td>
+                                                    <td><?= $dataBuku['pencipta']; ?></td>
+                                                    <td><?= $dataBuku['id_kategori']; ?></td>
+                                                    <td><?= $dataBuku['jumlah_buku']; ?></td>
+                                                    <td><a href="buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-info">Detail</a></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
