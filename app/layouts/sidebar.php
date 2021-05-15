@@ -43,7 +43,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="./history">
+        <a class="nav-link" href="./history_tbl.php">
             <i class="fas fa-history"></i>
             <span>History</span>
         </a>

@@ -1,13 +1,14 @@
 <?php
 include('./config/functions/functionPeminjaman.php');
-$id = $_GET['id_buku'];
-$dataBuku = query("SELECT * FROM buku WHERE id_buku = $id")[0];
-$petugas = query("SELECT * FROM petugas");
+
+$id = $_GET['id_peminjaman'];
+
+$detailPeminjaman = detail($id);
 if (isset($_POST['submit'])) {
-    if (tambah($_POST) > 0) {
+    if (ubah($_POST) > 0) {
         echo "
             <script>
-                alert('Buku berhasil dipinjam!');
+                alert('Buku berhasil diubah!');
                 document.location.href = 'history_tbl.php';
             </script>
         ";
@@ -67,31 +68,26 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="POST">
-                                            <input type="text" name="id_buku" id="id_buku" value="<?= $dataBuku['id_buku'] ?>" hidden>
+                                            <input type="text" name="id_peminjaman" id="id_peminjaman" value="<?= $detailPeminjaman['id_peminjaman'] ?>" hidden>
                                             <div class="form-group">
                                                 <label for="penerbit">Judul</label>
-                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $dataBuku['judul'] ?>" disabled>
+                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $detailPeminjaman['judul'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="penerbit">Penerbit</label>
-                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $dataBuku['penerbit'] ?>" disabled>
+                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $detailPeminjaman['penerbit'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pencipta">Pencipta</label>
-                                                <input type="text" class="form-control" id="pencipta" name="pencipta" placeholder="<?= $dataBuku['pencipta'] ?>" disabled>
+                                                <input type="text" class="form-control" id="pencipta" name="pencipta" placeholder="<?= $detailPeminjaman['pencipta'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
-                                                <label for="id_petugas">Petugas</label>
-                                                <select name="id_petugas" id="id_petugas" class="form-control">
-                                                    <option>-- Pilih --</option>
-                                                    <?php foreach ($petugas as $dataPetugas) : ?>
-                                                        <option value="<?= $dataPetugas['id_petugas']  ?>"><?= $dataPetugas['nama_petugas'] ?></option>
-                                                    <?php endforeach ?>
-                                                </select>
+                                                <label for="pencipta">Petugas</label>
+                                                <input type="text" class="form-control" id="petugas" name="petugas" placeholder="<?= $detailPeminjaman['nama_petugas'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="nis">NIS Siswa</label>
-                                                <input type="number" class="form-control" id="nis" name="nis" required>
+                                                <input type="number" class="form-control" id="nis" name="nis" required placeholder="<?= $detailPeminjaman['nis'] ?>" disabled>
                                             </div>
 
                                             <div class="form-group">
@@ -102,8 +98,10 @@ if (isset($_POST['submit'])) {
                                                     <option value="2">dikembalikan</option>
                                                 </select>
                                             </div>
+                                            <input type="hidden" name="created_at" value="<?= $detailPeminjaman['created_at']; ?>">
 
-                                            <button type="submit" name="submit" class="btn btn-success">Tambah</button>
+
+                                            <button type="submit" name="submit" class="btn btn-success">Ubah</button>
                                         </form>
 
                                     </div>

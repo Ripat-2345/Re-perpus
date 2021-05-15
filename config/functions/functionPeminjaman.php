@@ -1,78 +1,67 @@
-<?php
-include('./config/conn.php');
+    <?php
+    include('./config/conn.php');
 
-function query($query)
-{
-    global $conn;
-    $result = mysqli_query($conn, $query);
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] =  $row;
+    function query($query)
+    {
+        global $conn;
+        $result = mysqli_query($conn, $query);
+        $rows = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] =  $row;
+        }
+
+        return $rows;
     }
 
-    return $rows;
-}
+    function detail($id)
+    {
 
-function detail($id)
-{
+        global $conn;
+        $result = mysqli_query($conn, "SELECT id_peminjaman,peminjaman.created_at,judul,penerbit,pencipta,nama_petugas,nama_siswa,peminjaman.status,peminjaman.nis,siswa.no_telp FROM peminjaman INNER JOIN buku ON peminjaman.id_buku = buku.id_buku INNER JOIN siswa ON peminjaman.nis = siswa.nis INNER JOIN petugas ON peminjaman.id_petugas = petugas.id_petugas Where id_peminjaman = '$id' ");
 
-    global $conn;
-    $result = mysqli_query($conn, "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori WHERE id_buku = '$id'");
+        $row = mysqli_fetch_assoc($result);
 
-    $row = mysqli_fetch_assoc($result);
+        return $row;
+    }
 
-    return $row;
-}
+    function tambah($request)
+    {
+        global $conn;
 
-function tambah($request)
-{
-    global $conn;
+        $id_petugas = htmlspecialchars($request['id_petugas']);
+        $nis = htmlspecialchars($request['nis']);
+        $id_buku = htmlspecialchars($request['id_buku']);
+        $status = htmlspecialchars($request['status']);
+        $query = "INSERT Into peminjaman Values
+                ('','$id_petugas','$nis','$id_buku',Now(),Now(),'$status')";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    }
 
-    $id_petugas = htmlspecialchars($request['id_petugas']);
-    $nis = htmlspecialchars($request['nis']);
-    $id_buku = htmlspecialchars($request['id_buku']);
-    $status = htmlspecialchars($request['status']);
+    function ubah($request)
+    {
+        global $conn;
+        $status = htmlspecialchars($request['status']);
+        $id_peminjaman = htmlspecialchars($request['id_peminjaman']);
+        $created_at = $request['created_at'];
 
-    $query = "INSERT INTO peminjaman VALUES
-            ('','$id_petugas','$nis','$id_buku',Now(),Now(),'$status')";
+        $query = "UPDATE peminjaman SET
+                status     ='$status',
+                created_at = '$created_at',
+                updated_at = Now()
+                WHERE id_peminjaman = $id_peminjaman
+                ";
 
-    mysqli_query($conn, $query);
+        mysqli_query($conn, $query);
 
-    return mysqli_affected_rows($conn);
-}
+        return mysqli_affected_rows($conn);
+    }
 
-function ubah($request)
-{
-    global $conn;
-    $id_buku = $request['id_buku'];
-    $judul = htmlspecialchars($request['judul']);
-    $penerbit = htmlspecialchars($request['penerbit']);
-    $pencipta = htmlspecialchars($request['pencipta']);
-    $id_kategori = htmlspecialchars($request['id_kategori']);
-    $jumlah_buku = htmlspecialchars($request['jumlah_buku']);
-    $created_at = $request['created_at'];
+    function hapus($id)
+    {
+        global $conn;
 
-    $query = "UPDATE buku SET
-            judul = '$judul',
-            penerbit = '$penerbit',
-            pencipta = '$pencipta',
-            id_kategori = '$id_kategori',
-            jumlah_buku = '$id_kategori',
-            created_at = '$created_at',
-            updated_at = Now()
-            WHERE id_buku = $id_buku
-            ";
+        mysqli_query($conn, "DELETE FROM buku WHERE id_buku = $id");
 
-    mysqli_query($conn, $query);
-
-    return mysqli_affected_rows($conn);
-}
-
-function hapus($id)
-{
-    global $conn;
-
-    mysqli_query($conn, "DELETE FROM buku WHERE id_buku = $id");
-
-    return mysqli_affected_rows($conn);
-}
+        return mysqli_affected_rows($conn);
+    }
