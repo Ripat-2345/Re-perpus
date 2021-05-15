@@ -67,45 +67,6 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="POST">
-<<<<<<< HEAD
-                                            <input type="hidden" class="form-control" id="id_buku" name="id_buku" value="<?= $dataBuku['id_buku'] ?>">
-                                            <div class="form-group">
-                                                <label for="judul">Judul</label>
-                                                <input type="text" class="form-control" id="judul" name="judul" placeholder="<?= $dataBuku['judul'] ?>" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="penerbit">Penerbit</label>
-                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $dataBuku['penerbit'] ?>" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pencipta">Pencipta</label>
-                                                <input type="text" class="form-control" id="pencipta" name="pencipta" placeholder="<?= $dataBuku['pencipta'] ?>" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="id_petugas">Petugas</label>
-                                                <select name="id_petugas" id="id_petugas" class="form-control">
-                                                    <option>-- Pilih --</option>
-                                                    <?php foreach ($petugas as $dataPetugas) : ?>
-                                                        <option value="<?= $datapetugas['id_petugas']  ?>"><?= $dataPetugas['nama_petugas'] ?></option>
-                                                    <?php endforeach ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nis">NIS Siswa</label>
-                                                <input type="number" class="form-control" id="nis" name="nis" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="status">Status</label>
-                                                <select name="status" id="status" class="form-control">
-                                                    <option>-- Pilih --</option>
-                                                    <option value="1">Dipinjam</option>
-                                                    <option value="2">Dikembalikan</option>
-                                                </select>
-                                            </div>
-
-                                            <button type="submit" name="submit" class="btn btn-success">Tambah</button>
-                                        </form>
-=======
                                             <input type="hidden" class="form-control" id="id_buku" name="id_buku" placeholder="<?= $dataBuku['id_buku'] ?>" value="<?= $dataBuku['id_buku'] ?>" class="form-group">
                                             <label for="judul">Judul</label>
                                             <input type="text" class="form-control" id="judul" name="judul" placeholder="<?= $dataBuku['judul'] ?>" disabled>
@@ -126,7 +87,6 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $datapetugas['id_petugas']  ?>"><?= $dataPetugas['nama_petugas'] ?></option>
                                             <?php endforeach ?>
                                         </select>
->>>>>>> 5f810c462c2e1bd8a5b77c57be1f9193de101ed2
                                     </div>
                                     <div class="form-group">
                                         <label for="nis">NIS Siswa</label>
