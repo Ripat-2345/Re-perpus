@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="POST">
-                                            <input type="hidden" class="form-control" id="id_buku" name="id_buku" placeholder="<?= $dataBuku['id_buku'] ?>">
+                                            <input type="hidden" class="form-control" id="id_buku" name="id_buku" value="<?= $dataBuku['id_buku'] ?>">
                                             <div class="form-group">
                                                 <label for="judul">Judul</label>
                                                 <input type="text" class="form-control" id="judul" name="judul" placeholder="<?= $dataBuku['judul'] ?>" disabled>
