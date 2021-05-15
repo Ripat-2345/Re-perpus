@@ -1,9 +1,9 @@
 <?php
 include('./config/functions/functionPeminjaman.php');
-
-
+$id = $_GET['id_buku'];
+$dataBuku = query("SELECT * FROM buku WHERE id_buku = $id")[0];
+$petugas = query("SELECT * FROM petugas");
 if (isset($_POST['submit'])) {
-
     if (tambah($_POST) > 0) {
         echo "
             <script>
@@ -67,17 +67,18 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="POST">
+                                            <input type="hidden" class="form-control" id="id_buku" name="id_buku" placeholder="<?= $dataBuku['id_buku'] ?>">
                                             <div class="form-group">
                                                 <label for="judul">Judul</label>
-                                                <input type="text" class="form-control" id="judul" name="judul" placeholder="" disabled>
+                                                <input type="text" class="form-control" id="judul" name="judul" placeholder="<?= $dataBuku['judul'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="penerbit">Penerbit</label>
-                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="" disabled>
+                                                <input type="penerbit" class="form-control" id="penerbit" name="penerbit" placeholder="<?= $dataBuku['penerbit'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pencipta">Pencipta</label>
-                                                <input type="text" class="form-control" id="pencipta" name="pencipta" placeholder="" disabled>
+                                                <input type="text" class="form-control" id="pencipta" name="pencipta" placeholder="<?= $dataBuku['pencipta'] ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_petugas">Petugas</label>
