@@ -46,7 +46,7 @@ $kategori = query("SELECT * FROM kategori");
                                     <a href="./kategori_tambah.php" class="btn btn-primary">Tambah Kategori</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>

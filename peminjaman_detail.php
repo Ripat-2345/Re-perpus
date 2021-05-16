@@ -70,7 +70,20 @@ $detailPeminjaman = detail($id);
                                             </tr>
                                             <tr>
                                                 <th style="width:250px;">Status</th>
-                                                <td>: <?= $detailPeminjaman['status']; ?></td>
+                                                <?php if ($detailPeminjaman['status'] == 'Dipinjam') : ?>
+                                                    <td>:
+                                                        <span class="badge badge-danger h1">
+                                                            <?= $detailPeminjaman['status']; ?>
+                                                        </span>
+                                                    </td>
+                                                <?php endif; ?>
+                                                <?php if ($detailPeminjaman['status'] == 'Dikembalikan') : ?>
+                                                    <td>:
+                                                        <span class="badge badge-success">
+                                                            <?= $detailPeminjaman['status']; ?>
+                                                        </span>
+                                                    </td>
+                                                <?php endif; ?>
                                             </tr>
 
                                             <tr>

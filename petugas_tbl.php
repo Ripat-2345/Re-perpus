@@ -46,7 +46,7 @@ $petugas = query("SELECT * FROM petugas");
                                     <a href="./petugas_tambah.php" class="btn btn-primary">Tambah Petugas</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>

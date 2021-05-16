@@ -1,20 +1,44 @@
 <?php
 include('./config/functions/functionAuth.php');
 
+if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'admin') || (isset($_SESSION['level']) == 'petugas')) {
+    header('location:dashboard.php');
+} else if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'siswa')) {
+    header('location:home.php');
+}
+
 if (isset($_POST['login'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $result = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
-    var_dump($result);
+    $petugasInfo = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
+    $siswaInfo = mysqli_query($conn, "SELECT * FROM siswa WHERE username = '$username'");
 
-    if (mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($petugasInfo) === 1) {
 
-        $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($petugasInfo);
 
         if (password_verify($password, $row['password'])) {
+            // sessin set
+            $_SESSION['login'] = true;
+            $_SESSION['nama'] = $row['nama_petugas'];
+            $_SESSION['level'] = $row['level'];
             header('location: dashboard.php');
+            exit;
+        }
+
+        $error = true;
+    } else if (mysqli_num_rows($siswaInfo) === 1) {
+
+        $row = mysqli_fetch_assoc($siswaInfo);
+
+        if (password_verify($password, $row['password'])) {
+            // sessin set
+            $_SESSION['login'] = true;
+            $_SESSION['nama'] = $row['nama_siswa'];
+            $_SESSION['level'] = $row['level'];
+            header('location: home.php');
             exit;
         }
 
@@ -49,6 +73,22 @@ if (isset($_POST['login'])) {
                                 <div class="card-body p-0">
                                     <div class="row">
                                         <div class="col-lg-12">
+                                            <?php if (!isset($_SESSION['login'])) : ?>
+                                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    Silahkan Login Terlebih Dahulu!
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (isset($error)) : ?>
+                                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    Gagal, mohon periksa lagi username dan password Anda!
+                                                </div>
+                                            <?php endif; ?>
                                             <div class="login-form">
                                                 <div class="text-center">
                                                     <h1 class="h4 text-gray-900 mb-4">Login Perpus Tech</h1>

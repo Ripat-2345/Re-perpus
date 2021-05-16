@@ -33,7 +33,7 @@ $buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kate
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manajemen BUKU</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manajemen Buku</h1>
                     </div>
 
                     <!--Row-->
@@ -47,15 +47,12 @@ $buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kate
 
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>
-                                                <th>Judul</th>
-                                                <th>Penerbit</th>
-                                                <th>Pencipta</th>
-                                                <th>Id Kategori</th>
-                                                <th>Jumlah</th>
+                                                <th>Judul Buku</th>
+                                                <th>Kategori</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -65,10 +62,7 @@ $buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kate
                                                 <tr>
                                                     <td><?= $no++; ?></td>
                                                     <td><?= $dataBuku['judul']; ?></td>
-                                                    <td><?= $dataBuku['penerbit']; ?></td>
-                                                    <td><?= $dataBuku['pencipta']; ?></td>
                                                     <td><?= $dataBuku['nama_kategori']; ?></td>
-                                                    <td><?= $dataBuku['jumlah_buku']; ?></td>
                                                     <td><a href="buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-info">Detail</a> <a href="peminjaman_tambah.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-warning">Pinjam</a></td>
                                                 </tr>
                                             <?php endforeach; ?>

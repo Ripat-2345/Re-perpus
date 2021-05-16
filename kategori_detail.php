@@ -48,11 +48,7 @@ $detailKategori = detail($id);
                                     <table class="table align-items-center table-flush">
                                         <tbody>
                                             <tr>
-                                                <th style="width:250px;">Id Kategori</th>
-                                                <td>: <?= $detailKategori['id_kategori']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:250px;">nama_kategori</th>
+                                                <th style="width:250px;">Nama Kategori</th>
                                                 <td>: <?= $detailKategori['nama_kategori']; ?></td>
                                             </tr>
                                             <tr>

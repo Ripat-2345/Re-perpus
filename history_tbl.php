@@ -45,13 +45,13 @@ $peminjaman = query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjam
                                     <h6 class="m-0 font-weight-bold text-primary">Tabel History</h6>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Petugas</th>
                                                 <th>Nama Siswa</th>
-                                                <th>Judul</th>
+                                                <th>Judul Buku</th>
                                                 <th>Status</th>
 
 
@@ -66,7 +66,20 @@ $peminjaman = query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjam
                                                     <td><?= $dataPeminjaman['nama_petugas']; ?></td>
                                                     <td><?= $dataPeminjaman['nama_siswa']; ?></td>
                                                     <td><?= $dataPeminjaman['judul']; ?></td>
-                                                    <td><?= $dataPeminjaman['status']; ?></td>
+                                                    <?php if ($dataPeminjaman['status'] == 'Dipinjam') : ?>
+                                                        <td>
+                                                            <span class="badge badge-danger">
+                                                                <?= $dataPeminjaman['status']; ?>
+                                                            </span>
+                                                        </td>
+                                                    <?php endif; ?>
+                                                    <?php if ($dataPeminjaman['status'] == 'Dikembalikan') : ?>
+                                                        <td>
+                                                            <span class="badge badge-success">
+                                                                <?= $dataPeminjaman['status']; ?>
+                                                            </span>
+                                                        </td>
+                                                    <?php endif; ?>
                                                     <td><a href="peminjaman_detail.php?id_peminjaman=<?= $dataPeminjaman['id_peminjaman']; ?>" class="btn btn-sm btn-info">Detail</a>
                                                 </tr>
                                             <?php endforeach; ?>

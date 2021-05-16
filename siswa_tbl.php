@@ -46,7 +46,7 @@ $siswa = query("SELECT * FROM siswa");
                                     <a href="./siswa_tambah.php" class="btn btn-primary">Tambah Siswa</a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>

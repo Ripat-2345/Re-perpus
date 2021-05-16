@@ -15,37 +15,61 @@
     <div class="sidebar-heading">
         Features
     </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-            <i class="fas fa-users"></i>
-            <span>Users</span>
-        </a>
-        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Manajemen User</h6>
-                <a class="collapse-item" href="./petugas_tbl.php">Manajemen Petugas</a>
-                <a class="collapse-item" href="./siswa_tbl.php">Manajemen Siswa</a>
+    <?php if ($_SESSION['level'] == 'admin') : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+            </a>
+            <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Manajemen User</h6>
+                    <a class="collapse-item" href="./petugas_tbl.php">Manajemen Petugas</a>
+                    <a class="collapse-item" href="./siswa_tbl.php">Manajemen Siswa</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerpustakaan" aria-expanded="true" aria-controls="collapsePerpustakaan">
-            <i class="fas fa-book-reader"></i>
-            <span>Perpustakaan</span>
-        </a>
-        <div id="collapsePerpustakaan" class="collapse" aria-labelledby="headingPerpustakaan" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Manajemen Perpustakaan</h6>
-                <a class="collapse-item" href="./buku_tbl.php">Manajemen Buku</a>
-                <a class="collapse-item" href="./kategori_tbl.php">Manajemen Kategori Buku</a>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerpustakaan" aria-expanded="true" aria-controls="collapsePerpustakaan">
+                <i class="fas fa-book-reader"></i>
+                <span>Perpustakaan</span>
+            </a>
+            <div id="collapsePerpustakaan" class="collapse" aria-labelledby="headingPerpustakaan" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Manajemen Perpustakaan</h6>
+                    <a class="collapse-item" href="./buku_tbl.php">Manajemen Buku</a>
+                    <a class="collapse-item" href="./kategori_tbl.php">Manajemen Kategori Buku</a>
+                </div>
             </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="./history_tbl.php">
-            <i class="fas fa-history"></i>
-            <span>History</span>
-        </a>
-    </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./history_tbl.php">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if ($_SESSION['level'] == 'petugas') : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerpustakaan" aria-expanded="true" aria-controls="collapsePerpustakaan">
+                <i class="fas fa-book-reader"></i>
+                <span>Perpustakaan</span>
+            </a>
+            <div id="collapsePerpustakaan" class="collapse" aria-labelledby="headingPerpustakaan" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Manajemen Perpustakaan</h6>
+                    <a class="collapse-item" href="./buku_tbl.php">Manajemen Buku</a>
+                    <a class="collapse-item" href="./kategori_tbl.php">Manajemen Kategori Buku</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./history_tbl.php">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+        </li>
+    <?php endif; ?>
 </ul>

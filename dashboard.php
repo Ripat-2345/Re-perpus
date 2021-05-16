@@ -1,3 +1,14 @@
+<?php
+include('./config/conn.php');
+if (!isset($_SESSION['login'])) {
+  header('location:auth_login.php');
+}
+
+if ($_SESSION['level'] == 'siswa') {
+  header('location:home.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
