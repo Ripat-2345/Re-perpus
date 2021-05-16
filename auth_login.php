@@ -73,14 +73,6 @@ if (isset($_POST['login'])) {
                                 <div class="card-body p-0">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <?php if (!isset($_SESSION['login'])) : ?>
-                                                <div class="alert alert-warning alert-dismissible" role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    Silahkan Login Terlebih Dahulu!
-                                                </div>
-                                            <?php endif; ?>
                                             <?php if (isset($error)) : ?>
                                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
