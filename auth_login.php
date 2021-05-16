@@ -1,6 +1,26 @@
 <?php
-include('./config/functions/functionKategori.php');
-$kategori = query("SELECT * FROM kategori");
+include('./config/functions/functionAuth.php');
+
+if (isset($_POST['login'])) {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $result = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
+    var_dump($result);
+
+    if (mysqli_num_rows($result) === 1) {
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (password_verify($password, $row['password'])) {
+            header('location: dashboard.php');
+            exit;
+        }
+
+        $error = true;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +55,13 @@ $kategori = query("SELECT * FROM kategori");
                                                 </div>
                                                 <form class="user" action="" method="POST">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="username" placeholder="Masukan Username">
+                                                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="password" class="form-control" id="password" placeholder="Masukan Password">
+                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password">
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
+                                                        <button type="submit" name="login" class="btn btn-primary btn-block">Login</button>
                                                     </div>
                                                 </form>
                                                 <hr>
@@ -58,7 +78,7 @@ $kategori = query("SELECT * FROM kategori");
                 <!---Container Fluid-->
             </div>
 
-            <!-- <footer>
+            <footer>
                 <div class="container">
                     <div class="copyright text-center my-auto">
                         <span>copyright &copy; <script>
@@ -68,7 +88,7 @@ $kategori = query("SELECT * FROM kategori");
                         </span>
                     </div>
                 </div>
-            </footer> -->
+            </footer>
         </div>
     </div>
 
