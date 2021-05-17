@@ -74,3 +74,11 @@ function hapus($id)
 
     return mysqli_affected_rows($conn);
 }
+
+function cari($keyword, $awalData, $jumlahDataPerhalaman)
+{
+
+    $query = "SELECT * FROM kategori Where nama_kategori LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+
+    return query($query);
+}

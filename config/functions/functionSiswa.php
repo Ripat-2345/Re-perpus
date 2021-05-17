@@ -92,3 +92,11 @@ function hapus($id)
 
     return mysqli_affected_rows($conn);
 }
+
+function cari($keyword, $awalData, $jumlahDataPerhalaman)
+{
+
+    $query = "SELECT * FROM siswa Where nama_siswa LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+
+    return query($query);
+}

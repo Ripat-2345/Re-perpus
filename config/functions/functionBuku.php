@@ -85,3 +85,11 @@ function hapus($id)
 
     return mysqli_affected_rows($conn);
 }
+
+function cari($keyword, $awalData, $jumlahDataPerhalaman)
+{
+
+    $query = "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori Where judul Like '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+
+    return query($query);
+}
