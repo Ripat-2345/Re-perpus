@@ -1,6 +1,24 @@
 <?php
 include('./config/functions/functionKategori.php');
 $kategori = query("SELECT * FROM kategori");
+$awalData = 0;
+$jumlahDataPerhalaman = 2;
+$jumlahData = count(query("SELECT * FROM kategori"));
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
+$halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
+
+$awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
+$kategori = query("SELECT * FROM kategori Limit $awalData,$jumlahDataPerhalaman");
+
+if (isset($_GET['cari'])) {
+    $keyword = $_GET["keyword"];
+    $jumlahData = count(query("SELECT * FROM kategori Where nama_kategori LIKE '%$keyword%'"));
+    $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
+    $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
+    $awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
+    $kategori = cari($_GET["keyword"], $awalData, $jumlahDataPerhalaman);
+}
+?>
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +61,11 @@ $kategori = query("SELECT * FROM kategori");
                             <div class="card">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <a href="./kategori_tambah.php" class="btn btn-sm btn-primary">Tambah Kategori</a>
-                                    <form action="" method="POST">
+                                    <form action="" method="GET">
                                         <div class="input-group">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Cari">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Cari" name="keyword">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                                                <button class="btn btn-sm btn-primary" name="cari"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -73,7 +91,30 @@ $kategori = query("SELECT * FROM kategori");
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="card-footer"></div>
+                                <div class="card-footer text-right">
+                                    <nav class="d-inline-block">
+                                        <ul class="pagination mb-0">
+                                            <?php if (isset($_GET['cari'])) { ?>
+                                                <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?php echo $_GET['keyword'] ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+                                                <a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><i class="fas fa-chevron-right"></i></a>
+                                            <?php } else { ?>
+                                                <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+                                                <a class="page-link" href="?halaman=<?= $halamanAktif + 1 ?>"><i class="fas fa-chevron-right"></i></a>
+                                            <?php } ?>
+                                        </ul>
+                                    </nav>
+
+                                </div>
                             </div>
                         </div>
                     </div>
