@@ -1,5 +1,5 @@
 <?php
-include('./config/functions/functionSiswa.php');
+include('./config/functions/functionPetugas.php');
 $petugas = query("SELECT * FROM petugas");
 ?>
 
