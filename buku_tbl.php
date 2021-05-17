@@ -42,9 +42,15 @@ $buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kate
                             <!-- Simple Tables -->
                             <div class="card">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Buku</h6>
-                                    <a href="./buku_tambah.php" class="btn btn-primary">Tambah Buku</a>
-
+                                    <a href="./buku_tambah.php" class="btn btn-sm btn-primary">Tambah Buku</a>
+                                    <form action="" method="POST">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Cari">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush text-center">

@@ -34,6 +34,7 @@ $siswa = query("SELECT * FROM siswa");
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Manajemen Siswa</h1>
+
                     </div>
 
                     <!--Row-->
@@ -42,9 +43,17 @@ $siswa = query("SELECT * FROM siswa");
                             <!-- Simple Tables -->
                             <div class="card">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Siswa</h6>
-                                    <a href="./siswa_tambah.php" class="btn btn-primary">Tambah Siswa</a>
+                                    <a href="./siswa_tambah.php" class="btn btn-sm btn-primary">Tambah Siswa</a>
+                                    <form action="" method="POST">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Cari">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
+
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush text-center">
                                         <thead class="thead-light">
