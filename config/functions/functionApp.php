@@ -27,3 +27,11 @@ function detail($id)
 
     return $row;
 }
+
+function cari($keyword, $awalData, $jumlahDataPerhalaman)
+{
+
+    $query = "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori Where judul Like '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+
+    return query($query);
+}
