@@ -1,51 +1,51 @@
-//<?php
-    include('./config/functions/functionAuth.php');
+<?php
+include('./config/functions/functionAuth.php');
 
-    if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'admin') || (isset($_SESSION['level']) == 'petugas')) {
-        header('location:dashboard.php');
-    } else if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'siswa')) {
-        header('location:home.php');
-    }
+if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'admin') || (isset($_SESSION['level']) == 'petugas')) {
+    header('location:dashboard.php');
+} else if (isset($_SESSION['login']) && (isset($_SESSION['level']) == 'siswa')) {
+    header('location:home.php');
+}
 
-    if (isset($_POST['login'])) {
+if (isset($_POST['login'])) {
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $petugasInfo = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
-        $siswaInfo = mysqli_query($conn, "SELECT * FROM siswa WHERE username = '$username'");
+    $petugasInfo = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
+    $siswaInfo = mysqli_query($conn, "SELECT * FROM siswa WHERE username = '$username'");
 
-        if (mysqli_num_rows($petugasInfo) === 1) {
+    if (mysqli_num_rows($petugasInfo) === 1) {
 
-            $row = mysqli_fetch_assoc($petugasInfo);
+        $row = mysqli_fetch_assoc($petugasInfo);
 
-            if (password_verify($password, $row['password'])) {
-                // sessin set
-                $_SESSION['login'] = true;
-                $_SESSION['nama'] = $row['nama_petugas'];
-                $_SESSION['level'] = $row['level'];
-                header('location: dashboard.php');
-                exit;
-            }
-
-            $error = true;
-        } else if (mysqli_num_rows($siswaInfo) === 1) {
-
-            $row = mysqli_fetch_assoc($siswaInfo);
-
-            if (password_verify($password, $row['password'])) {
-                // sessin set
-                $_SESSION['login'] = true;
-                $_SESSION['nama'] = $row['nama_siswa'];
-                $_SESSION['level'] = $row['level'];
-                header('location: home.php');
-                exit;
-            }
-
-            $error = true;
+        if (password_verify($password, $row['password'])) {
+            // sessin set
+            $_SESSION['login'] = true;
+            $_SESSION['nama'] = $row['nama_petugas'];
+            $_SESSION['level'] = $row['level'];
+            header('location: dashboard.php');
+            exit;
         }
+
+        $error = true;
+    } else if (mysqli_num_rows($siswaInfo) === 1) {
+
+        $row = mysqli_fetch_assoc($siswaInfo);
+
+        if (password_verify($password, $row['password'])) {
+            // sessin set
+            $_SESSION['login'] = true;
+            $_SESSION['nama'] = $row['nama_siswa'];
+            $_SESSION['level'] = $row['level'];
+            header('location: home.php');
+            exit;
+        }
+
+        $error = true;
     }
-    ?>//
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

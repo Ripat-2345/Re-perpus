@@ -66,7 +66,11 @@ if (isset($_POST['submit'])) {
                                         <h6 class="m-0 font-weight-bold text-primary">Tambah Buku</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="" method="POST">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="gambar">Gambar</label>
+                                                <input type="file" class="form-control" id="gambar" name="gambar" required>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="judul">Judul</label>
                                                 <input type="text" class="form-control" id="judul" name="judul" required>
@@ -78,6 +82,10 @@ if (isset($_POST['submit'])) {
                                             <div class="form-group">
                                                 <label for="pencipta">Pencipta</label>
                                                 <input type="text" class="form-control" id="pencipta" name="pencipta" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi</label>
+                                                <textarea name="deskripsi" id="deskripsi" class="form-control" cols="30" rows="10" required></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_kategori">Kategori</label>

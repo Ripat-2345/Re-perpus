@@ -38,16 +38,64 @@ function tambah($request)
 
     $judul = htmlspecialchars($request['judul']);
     $pencipta = htmlspecialchars($request['pencipta']);
+    $deskripsi = htmlspecialchars($request['deskripsi']);
     $penerbit = htmlspecialchars($request['penerbit']);
     $id_kategori = htmlspecialchars($request['id_kategori']);
     $jumlah_buku = htmlspecialchars($request['jumlah_buku']);
 
+    $gambar = upload();
+
+    if (!$gambar) {
+        return false;
+    }
+
     $query = "INSERT INTO buku VALUES
-            ('','$judul','$penerbit','$pencipta','$id_kategori','$jumlah_buku',Now(),Now())";
+            ('','$gambar','$judul','$penerbit','$pencipta','$deskripsi','$id_kategori','$jumlah_buku',Now(),Now())";
 
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
+}
+
+function upload()
+{
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    if ($error === 4) {
+        echo "<script>
+                alert('Silahkan Upload Gambar!');
+            </script>";
+        return false;
+    }
+
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+                alert('Ekstensi gambar harus jpg/jpeg/png');
+            </script>";
+        return false;
+    }
+
+
+    if ($ukuranFile > 2000000) {
+        echo "<script>
+                alert('Ukuran file gambar terlalu besar!');
+            </script>";
+        return false;
+    }
+
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    move_uploaded_file($tmpName, 'app/img/' . $namaFileBaru);
+
+    return $namaFileBaru;
 }
 
 function ubah($request)
@@ -57,16 +105,26 @@ function ubah($request)
     $judul = htmlspecialchars($request['judul']);
     $penerbit = htmlspecialchars($request['penerbit']);
     $pencipta = htmlspecialchars($request['pencipta']);
+    $deskripsi = htmlspecialchars($request['deskripsi']);
     $id_kategori = htmlspecialchars($request['id_kategori']);
     $jumlah_buku = htmlspecialchars($request['jumlah_buku']);
     $created_at = $request['created_at'];
+    $gambarLama = htmlspecialchars($request['gambarLama']);
+
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+    }
 
     $query = "UPDATE buku SET
+            gambar = '$gambar',
             judul = '$judul',
             penerbit = '$penerbit',
             pencipta = '$pencipta',
+            deskripsi = '$deskripsi',
             id_kategori = '$id_kategori',
-            jumlah_buku = '$id_kategori',
+            jumlah_buku = '$jumlah_buku',
             created_at = '$created_at',
             updated_at = Now()
             WHERE id_buku = $id_buku

@@ -75,6 +75,7 @@ if (isset($_GET['cari'])) {
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>No</th>
+                                                <th>Gambar</th>
                                                 <th>Judul Buku</th>
                                                 <th>Kategori</th>
                                                 <th>Action</th>
@@ -85,6 +86,7 @@ if (isset($_GET['cari'])) {
                                             <?php foreach ($buku as $dataBuku) : ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
+                                                    <td><img src="./app/img/<?= $dataBuku['gambar']; ?>" alt="" width="100" height="120" class="img-thumbnail"></td>
                                                     <td><?= $dataBuku['judul']; ?></td>
                                                     <td><?= $dataBuku['nama_kategori']; ?></td>
                                                     <td><a href="buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-info">Detail</a> <a href="peminjaman_tambah.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-warning">Pinjam</a></td>

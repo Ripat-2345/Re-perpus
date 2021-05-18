@@ -71,11 +71,17 @@ if (isset($_POST['submit'])) {
                                         <h6 class="m-0 font-weight-bold text-primary">Ubah Buku</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="" method="POST">
+                                        <form action="" method="POST" enctype="multipart/form-data">
                                             <input type="hidden" name="id_buku" value="<?= $dataBuku['id_buku']; ?>">
+                                            <input type="hidden" name="gambarLama" value="<?= $dataBuku['gambar']; ?>">
+                                            <div class="form-group">
+                                                <label for="gambar">Gambar</label>
+                                                <input type="file" class="form-control" id="gambar" name="gambar">
+                                                <img src="./app/img/<?= $dataBuku['gambar']; ?>" alt="" width="100" height="120" class="img-thumbnail">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="judul">Judul</label>
-                                                <input type="text" class="form-control" id="judul" name="judul" required value="<?= $dataBuku['judul'] ?>">
+                                                <input type="text" class="form-control" id="judul" name="judul" value="<?= $dataBuku['judul'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="penerbit">Penerbit</label>
@@ -84,6 +90,10 @@ if (isset($_POST['submit'])) {
                                             <div class="form-group">
                                                 <label for="pencipta">Pencipta</label>
                                                 <input type="text" class="form-control" id="pencipta" name="pencipta" required value="<?= $dataBuku['pencipta'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi</label>
+                                                <textarea name="deskripsi" id="deskripsi" class="form-control" cols="30" rows="10" required><?= $dataBuku['deskripsi']; ?></textarea>
                                             </div>
                                             <div class=" form-group">
                                                 <label for="id_kategori">Kategori</label>

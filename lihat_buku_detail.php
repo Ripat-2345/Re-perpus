@@ -1,5 +1,8 @@
 <?php
-include('./config/conn.php');
+include('./config/functions/functionApp.php');
+$id = $_GET['id_buku'];
+$detailBuku = detail($id);
+
 if (!isset($_SESSION['login'])) {
     header('location:auth_login.php');
 }
@@ -54,43 +57,38 @@ if (!isset($_SESSION['login'])) {
     </nav>
 
     <div class="row m-5">
-        <div class="col-lg-6 col-md-4">
-            <h1 class="mt-4" style="font-size:3.5rem; font-family:Arial, Helvetica, sans-serif; color:#5DC764;"><b>PERPUSTAKAAN</b>
-                <h2>SMK TRITECH INFORMATIKA</h2>
-            </h1>
-            <h5 class="my-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, aspernatur alias. Soluta, explicabo reiciendis? Suscipit distinctio corporis molestiae maiores iste! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, corporis culpa accusantium vitae alias consectetur!</h5>
-            <a href="lihat_buku.php" class="btn btn-success">Lihat Buku</a>
-        </div>
-        <div class="col-lg-6 col-md-4">
-            <img src="./app/assets/img/undraw_book_reading_kx9s.png" alt="" style="width: 100%; height:100%;">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <div class="card mb-3" style="max-width: 1000px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4" style="height: 24rem;">
+                        <img src="./app/img/<?= $detailBuku['gambar']; ?>" class="card-img" style="height:100%;" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><b><?= $detailBuku['judul']; ?></b></h2>
+                            <h5 class="card-title"><?= $detailBuku['pencipta']; ?></h5>
+                            <p class="card-title">Penerbit : <?= $detailBuku['penerbit']; ?>
+                                <br>Kategori : <?= $detailBuku['nama_kategori']; ?>
+                                <br>Deskripsi : <?= $detailBuku['deskripsi']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <section class="row" style="height:17rem;"></section>
-
-    <section class="row m-5">
-        <div class="col-lg-6 col-md-4">
-            <img src="./app/assets/img/undraw_reading_time_gvg0.png" alt="" style="width: 100%; height:100%;">
-        </div>
-        <div class="col-lg-6 col-md-4 p-4">
-            <h1 style="font-size:2.5rem; font-family:Arial, Helvetica, sans-serif; color:#5DC764;"><b>Peraturan di perpustakaan</b></h1>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">1.Cras justo odio</li>
-                <li class="list-group-item">2.Dapibus ac facilisis in</li>
-                <li class="list-group-item">3.Morbi leo risus</li>
-                <li class="list-group-item">4.Porta ac consectetur ac</li>
-                <li class="list-group-item">5.Vestibulum at eros</li>
-            </ul>
-        </div>
-    </section>
-    <!-- Footer -->
-    <?php include('./app/layouts/footer.php'); ?>
-    <!-- Footer -->
 
     <!-- Scroll to top -->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <!-- Footer -->
+    <footer class="fixed-bottom">
+        <?php include('./app/layouts/footer.php'); ?>
+    </footer>
+    <!-- Footer -->
     <!-- Js -->
     <?php include('./app/layouts/js.php'); ?>
 </body>

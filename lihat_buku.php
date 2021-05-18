@@ -1,5 +1,6 @@
 <?php
-include('./config/conn.php');
+include('./config/functions/functionApp.php');
+$buku = query("SELECT * FROM buku");
 if (!isset($_SESSION['login'])) {
     header('location:auth_login.php');
 }
@@ -53,36 +54,53 @@ if (!isset($_SESSION['login'])) {
         </div>
     </nav>
 
-    <div class="row m-5">
-        <div class="col-lg-6 col-md-4">
-            <h1 class="mt-4" style="font-size:3.5rem; font-family:Arial, Helvetica, sans-serif; color:#5DC764;"><b>PERPUSTAKAAN</b>
-                <h2>SMK TRITECH INFORMATIKA</h2>
-            </h1>
-            <h5 class="my-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, aspernatur alias. Soluta, explicabo reiciendis? Suscipit distinctio corporis molestiae maiores iste! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, corporis culpa accusantium vitae alias consectetur!</h5>
-            <a href="lihat_buku.php" class="btn btn-success">Lihat Buku</a>
-        </div>
-        <div class="col-lg-6 col-md-4">
-            <img src="./app/assets/img/undraw_book_reading_kx9s.png" alt="" style="width: 100%; height:100%;">
-        </div>
-    </div>
-
-    <section class="row" style="height:17rem;"></section>
-
-    <section class="row m-5">
-        <div class="col-lg-6 col-md-4">
-            <img src="./app/assets/img/undraw_reading_time_gvg0.png" alt="" style="width: 100%; height:100%;">
-        </div>
-        <div class="col-lg-6 col-md-4 p-4">
-            <h1 style="font-size:2.5rem; font-family:Arial, Helvetica, sans-serif; color:#5DC764;"><b>Peraturan di perpustakaan</b></h1>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">1.Cras justo odio</li>
-                <li class="list-group-item">2.Dapibus ac facilisis in</li>
-                <li class="list-group-item">3.Morbi leo risus</li>
-                <li class="list-group-item">4.Porta ac consectetur ac</li>
-                <li class="list-group-item">5.Vestibulum at eros</li>
-            </ul>
+    <section class="row mx-5 mt-5">
+        <div class="col-lg-12">
+            <div class="card">
+                <form action="" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Cari Buku" name="keyword">
+                        <div class="input-group-btn">
+                            <button class="btn btn-lg btn-success" name="cari"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
+    <div class="row m-5 align-content-center">
+        <?php foreach ($buku as $dataBuku) : ?>
+            <div class="col-lg-3 my-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="./app/img/<?= $dataBuku['gambar']; ?>" class="card-img-top" height="300" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark"><b><?= $dataBuku['judul']; ?></b></h5>
+                        <p class="card-text"><?= $dataBuku['pencipta']; ?></p>
+                        <a href="lihat_buku_detail.php?id_buku=<?= $dataBuku['id_buku']; ?>" class="btn btn-sm btn-success">Detail</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+
+    </div>
+    <div class="card-footer text-right">
+        <nav class="d-inline-block">
+            <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <!-- Footer -->
     <?php include('./app/layouts/footer.php'); ?>
     <!-- Footer -->

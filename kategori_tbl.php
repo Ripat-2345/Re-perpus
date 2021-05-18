@@ -19,7 +19,6 @@ if (isset($_GET['cari'])) {
     $kategori = cari($_GET["keyword"], $awalData, $jumlahDataPerhalaman);
 }
 ?>
-?>
 
 <!DOCTYPE html>
 <html lang="en">

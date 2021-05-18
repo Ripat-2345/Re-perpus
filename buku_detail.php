@@ -48,6 +48,10 @@ $detailBuku = detail($id);
                                     <table class="table align-items-center table-flush">
                                         <tbody>
                                             <tr>
+                                                <th style="width:250px;">Gambar Buku</th>
+                                                <td>: <img src="./app/img/<?= $detailBuku['gambar']; ?>" alt="" width="100" height="120" class="img-thumbnail"></td>
+                                            </tr>
+                                            <tr>
                                                 <th style="width:250px;">Judul Buku</th>
                                                 <td>: <?= $detailBuku['judul']; ?></td>
                                             </tr>
@@ -58,6 +62,10 @@ $detailBuku = detail($id);
                                             <tr>
                                                 <th style="width:250px;">Pencipta</th>
                                                 <td>: <?= $detailBuku['pencipta']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:250px;">Deskripsi</th>
+                                                <td><textarea class="form-control" cols="30" rows="10" readonly><?= $detailBuku['deskripsi']; ?></textarea></td>
                                             </tr>
                                             <tr>
                                                 <th style="width:250px;">Kategori</th>
