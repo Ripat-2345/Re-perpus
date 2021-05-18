@@ -147,7 +147,7 @@ function hapus($id)
 function cari($keyword, $awalData, $jumlahDataPerhalaman)
 {
 
-    $query = "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori Where judul Like '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+    $query = "SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori Where judul Like '%$keyword%' OR nama_kategori LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
 
     return query($query);
 }
