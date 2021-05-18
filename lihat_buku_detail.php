@@ -39,7 +39,7 @@ if (!isset($_SESSION['login'])) {
             <a class="navbar-brand" href="home.php" style="font-size: 2rem;"><img src="./app/assets/img/logo/Logo_smk_tritech.png" alt="" style="width:3rem; border-radius:10%;" class="py-auto"> Perpus Tech</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="lihat_buku.php" style="font-size: 1.5rem;">List Buku</a>
+                    <a class="nav-link" href="lihat_buku.php" style="font-size: 1.5rem;">Cari Buku</a>
                 </li>
             </ul>
             <?php if (isset($_SESSION['login'])) : ?>

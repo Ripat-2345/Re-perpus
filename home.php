@@ -36,7 +36,7 @@ if (!isset($_SESSION['login'])) {
             <a class="navbar-brand" href="home.php" style="font-size: 2rem;"><img src="./app/assets/img/logo/Logo_smk_tritech.png" alt="" style="width:3rem; border-radius:10%;" class="py-auto"> Perpus Tech</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="lihat_buku.php" style="font-size: 1.5rem;">List Buku</a>
+                    <a class="nav-link" href="lihat_buku.php" style="font-size: 1.5rem;">Cari Buku</a>
                 </li>
             </ul>
             <?php if (isset($_SESSION['login'])) : ?>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['login'])) {
                 <h2>SMK TRITECH INFORMATIKA</h2>
             </h1>
             <h5 class="my-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, aspernatur alias. Soluta, explicabo reiciendis? Suscipit distinctio corporis molestiae maiores iste! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, corporis culpa accusantium vitae alias consectetur!</h5>
-            <a href="lihat_buku.php" class="btn btn-success">Lihat Buku</a>
+            <a href="lihat_buku.php" class="btn btn-success">Cari Buku</a>
         </div>
         <div class="col-lg-6 col-md-4">
             <img src="./app/assets/img/undraw_book_reading_kx9s.png" alt="" style="width: 100%; height:100%;">
