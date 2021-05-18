@@ -5,6 +5,26 @@ if (!isset($_SESSION['login'])) {
     header('location:auth_login.php');
 }
 
+$buku = query("SELECT * FROM buku");
+$awalData = 0;
+$jumlahDataPerhalaman = 12;
+$jumlahData = count(query("SELECT * FROM buku"));
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
+$halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
+
+$awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
+$buku = query("SELECT * FROM buku  Limit $awalData,$jumlahDataPerhalaman");
+
+if (isset($_GET['cari'])) {
+    $keyword = $_GET["keyword"];
+    $jumlahData = count(query("SELECT * FROM buku  Where judul Like '%$keyword%'"));
+    $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
+    $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
+    $awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
+    $buku = cari($_GET["keyword"], $awalData, $jumlahDataPerhalaman);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,17 +107,43 @@ if (!isset($_SESSION['login'])) {
     <div class="card-footer text-right">
         <nav class="d-inline-block">
             <ul class="pagination mb-0">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                </li>
+                <?php if (isset($_GET['cari'])) { ?>
+                    <?php if ($halamanAktif > 1) : ?>
+                        <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?php echo $_GET['keyword'] ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                    <?php endif; ?>
+                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                        <?php if ($i == $halamanAktif) : ?>
+                            <li class="page-item active">
+                                <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                        <a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><i class="fas fa-chevron-right"></i></a>
+                    <?php endif; ?>
+                <?php } else { ?>
+                    <?php if ($halamanAktif > 1) : ?>
+                        <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                    <?php endif; ?>
+                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                        <?php if ($i == $halamanAktif) : ?>
+                            <li class="page-item active">
+                                <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                        <a class="page-link" href="?halaman=<?= $halamanAktif + 1 ?>"><i class="fas fa-chevron-right"></i></a>
+                    <?php endif; ?>
+                <?php } ?>
             </ul>
         </nav>
     </div>
