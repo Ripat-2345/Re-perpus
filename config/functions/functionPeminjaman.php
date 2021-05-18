@@ -40,6 +40,14 @@
         $nis = htmlspecialchars($request['nis']);
         $id_buku = htmlspecialchars($request['id_buku']);
         $status = htmlspecialchars($request['status']);
+
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM siswa WHERE nis = '$nis'")) === 0) {
+            echo "<script>
+                    alert('Siswa belum terdaftar!');
+                </script>";
+            return false;
+        }
+
         $query = "INSERT Into peminjaman Values
                 ('','$id_petugas','$nis','$id_buku',Now(),Now(),'$status')";
         mysqli_query($conn, $query);

@@ -82,7 +82,7 @@ function upload()
     }
 
 
-    if ($ukuranFile > 2000000) {
+    if ($ukuranFile > 5000000) {
         echo "<script>
                 alert('Ukuran file gambar terlalu besar!');
             </script>";
