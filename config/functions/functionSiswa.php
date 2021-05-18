@@ -40,8 +40,8 @@ function tambah($request)
     $nama_siswa = htmlspecialchars($request['nama_siswa']);
     $kelas = htmlspecialchars($request['kelas']);
     $no_telp = htmlspecialchars($request['no_telp']);
-    $username = htmlspecialchars($request['username']);
-    $password = password_hash(htmlspecialchars($request['password']), PASSWORD_DEFAULT);
+    $username = $nama_siswa;
+    $password = password_hash($nis, PASSWORD_DEFAULT);
     $level = 'siswa';
 
     $query = "INSERT INTO siswa VALUES
@@ -61,8 +61,8 @@ function ubah($request)
     $nama_siswa = htmlspecialchars($request['nama_siswa']);
     $kelas = htmlspecialchars($request['kelas']);
     $no_telp = htmlspecialchars($request['no_telp']);
-    $username = htmlspecialchars($request['username']);
-    $password = password_hash(htmlspecialchars($request['password']), PASSWORD_DEFAULT);
+    $username = $nama_siswa;
+    $password = password_hash($nis, PASSWORD_DEFAULT);
     $level = 'siswa';
     $created_at = $request['created_at'];
 

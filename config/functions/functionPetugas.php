@@ -41,6 +41,13 @@ function tambah($request)
     $password = password_hash(htmlspecialchars($request['password']), PASSWORD_DEFAULT);
     $level = htmlspecialchars($request['level']);
 
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'"))) {
+        echo "<script>
+                alert('Username sudah ada!');
+            </script>";
+        return false;
+    }
+
     $query = "INSERT INTO petugas VALUES
             ('','$username','$password','$nama_petugas','$level',Now(),Now())";
 

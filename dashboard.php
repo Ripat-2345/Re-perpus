@@ -8,6 +8,11 @@ if ($_SESSION['level'] == 'siswa') {
   header('location:home.php');
 }
 
+$jumlahSiswa = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM siswa"));
+$jumlahPetugas = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM petugas"));
+$jumlahBuku = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM buku"));
+$jumlahPeminjam = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM peminjaman WHERE status = 'Dipinjam'"));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,15 +55,11 @@ if ($_SESSION['level'] == 'siswa') {
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span>Since last month</span>
-                      </div>
+                      <div class="text-xl font-weight-bold text-uppercase mb-1">Jumlah Siswa</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahSiswa; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-primary"></i>
+                      <i class="fas fa-users fa-2x text-primary"></i>
                     </div>
                   </div>
                 </div>
@@ -70,15 +71,11 @@ if ($_SESSION['level'] == 'siswa') {
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span>
-                      </div>
+                      <div class="text-xl font-weight-bold text-uppercase mb-1">Jumlah Petugas</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahPetugas; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                      <i class="fas fa-user-shield fa-2x text-success"></i>
                     </div>
                   </div>
                 </div>
@@ -90,15 +87,11 @@ if ($_SESSION['level'] == 'siswa') {
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
-                      </div>
+                      <div class="text-xl font-weight-bold text-uppercase mb-1">Jumlah Buku</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $jumlahBuku; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-users fa-2x text-info"></i>
+                      <i class="fas fa-book-open fa-2x text-info"></i>
                     </div>
                   </div>
                 </div>
@@ -110,15 +103,11 @@ if ($_SESSION['level'] == 'siswa') {
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                        <span>Since yesterday</span>
-                      </div>
+                      <div class="text-xl font-weight-bold text-uppercase mb-1">Buku Dipinjamkan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahPeminjam; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-warning"></i>
+                      <i class="fas fa-tags fa-2x text-warning"></i>
                     </div>
                   </div>
                 </div>

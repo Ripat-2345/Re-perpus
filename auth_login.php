@@ -15,6 +15,12 @@ if (isset($_POST['login'])) {
     $petugasInfo = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username'");
     $siswaInfo = mysqli_query($conn, "SELECT * FROM siswa WHERE username = '$username'");
 
+    if (mysqli_num_rows($petugasInfo) === 0) {
+        $error4 = true;
+    } else if (mysqli_num_rows($siswaInfo) === 0) {
+        $error4 = true;
+    }
+
     if (mysqli_num_rows($petugasInfo) === 1) {
 
         $row = mysqli_fetch_assoc($petugasInfo);
@@ -73,14 +79,21 @@ if (isset($_POST['login'])) {
                                 <div class="card-body p-0">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <?php if (isset($error)) : ?>
+                                            <?php if (isset($error)) { ?>
                                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     Gagal, mohon periksa lagi username dan password Anda!
                                                 </div>
-                                            <?php endif; ?>
+                                            <?php } else if (isset($error4)) { ?>
+                                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    Gagal, Anda belum terdaftar!
+                                                </div>
+                                            <?php }  ?>
                                             <div class="login-form">
                                                 <div class="text-center">
                                                     <h1 class="h4 text-gray-900 mb-4">Login Perpus Tech</h1>

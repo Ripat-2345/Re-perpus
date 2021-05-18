@@ -87,14 +87,6 @@ if (isset($_POST['submit'])) {
                                                 <label for="no_telp">No Telp</label>
                                                 <input type="number" class="form-control" id="no_telp" name="no_telp" value="<?= $dataSiswa['no_telp']; ?>" required>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username" value="<?= $dataSiswa['username']; ?>" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" value="<?= $dataSiswa['password']; ?>" required>
-                                            </div>
                                             <input type="hidden" name="created_at" value="<?= $dataSiswa['created_at']; ?>">
                                             <button type="submit" name="submit" class="btn btn-success">Ubah</button>
                                         </form>

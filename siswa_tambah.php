@@ -81,14 +81,6 @@ if (isset($_POST['submit'])) {
                                                 <label for="no_telp">No Telp</label>
                                                 <input type="number" class="form-control" id="no_telp" name="no_telp" required>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" required>
-                                            </div>
                                             <button type="submit" name="submit" class="btn btn-success">Tambah</button>
                                         </form>
                                     </div>
