@@ -12,7 +12,7 @@ $peminjaman = query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjam
 
 if (isset($_GET['cari'])) {
     $keyword = $_GET["keyword"];
-    $jumlahData = count(query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjaman.status FROM peminjaman INNER JOIN buku ON peminjaman.id_buku = buku.id_buku INNER JOIN siswa ON peminjaman.nis = siswa.nis INNER JOIN petugas ON peminjaman.id_petugas = petugas.id_petugas Where buku.judul LIKE '%$keyword%' "));
+    $jumlahData = count(query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjaman.status FROM peminjaman INNER JOIN buku ON peminjaman.id_buku = buku.id_buku INNER JOIN siswa ON peminjaman.nis = siswa.nis INNER JOIN petugas ON peminjaman.id_petugas = petugas.id_petugas Where buku.judul LIKE '%$keyword%' OR nama_petugas LIKE '%$keyword%' OR nama_siswa LIKE '%$keyword%'"));
     $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
     $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
     $awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
@@ -117,21 +117,41 @@ if (isset($_GET['cari'])) {
                                     <nav class="d-inline-block">
                                         <ul class="pagination mb-0">
                                             <?php if (isset($_GET['cari'])) { ?>
-                                                <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?php echo $_GET['keyword'] ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php if ($halamanAktif > 1) : ?>
+                                                    <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?php echo $_GET['keyword'] ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php endif; ?>
                                                 <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
-                                                    </li>
+                                                    <?php if ($i == $halamanAktif) : ?>
+                                                        <li class="page-item active">
+                                                            <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
+                                                        </li>
+                                                    <?php else : ?>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?halaman=<?= $i; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><?= $i; ?></a>
+                                                        </li>
+                                                    <?php endif; ?>
                                                 <?php endfor; ?>
-                                                <a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><i class="fas fa-chevron-right"></i></a>
+                                                <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                                                    <a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?php echo $_GET['keyword'] ?>&cari="><i class="fas fa-chevron-right"></i></a>
+                                                <?php endif; ?>
                                             <?php } else { ?>
-                                                <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php if ($halamanAktif > 1) : ?>
+                                                    <a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                                                <?php endif; ?>
                                                 <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
-                                                    </li>
+                                                    <?php if ($i == $halamanAktif) : ?>
+                                                        <li class="page-item active">
+                                                            <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                                                        </li>
+                                                    <?php else : ?>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                                                        </li>
+                                                    <?php endif; ?>
                                                 <?php endfor; ?>
-                                                <a class="page-link" href="?halaman=<?= $halamanAktif + 1 ?>"><i class="fas fa-chevron-right"></i></a>
+                                                <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                                                    <a class="page-link" href="?halaman=<?= $halamanAktif + 1 ?>"><i class="fas fa-chevron-right"></i></a>
+                                                <?php endif; ?>
                                             <?php } ?>
                                         </ul>
                                     </nav>

@@ -87,7 +87,7 @@ function hapus($id)
 function cari($keyword, $awalData, $jumlahDataPerhalaman)
 {
 
-    $query = "SELECT * FROM petugas Where nama_petugas LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+    $query = "SELECT * FROM petugas Where nama_petugas LIKE '%$keyword%' OR username LIKE '%$keyword%' OR petugas.level LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
 
     return query($query);
 }

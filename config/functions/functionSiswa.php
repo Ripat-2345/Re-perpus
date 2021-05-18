@@ -96,7 +96,7 @@ function hapus($id)
 function cari($keyword, $awalData, $jumlahDataPerhalaman)
 {
 
-    $query = "SELECT * FROM siswa Where nama_siswa LIKE '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
+    $query = "SELECT * FROM siswa Where nama_siswa LIKE '%$keyword%' OR nis LIKE '%$keyword%' OR kelas LIKE '%$keyword%' OR username Like '%$keyword%' Limit $awalData,$jumlahDataPerhalaman";
 
     return query($query);
 }
