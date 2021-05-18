@@ -2,7 +2,7 @@
 include('./config/functions/functionSiswa.php');
 $siswa = query("SELECT * FROM siswa");
 $awalData = 0;
-$jumlahDataPerhalaman = 2;
+$jumlahDataPerhalaman = 5;
 $jumlahData = count(query("SELECT * FROM siswa"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);

@@ -2,7 +2,7 @@
 include('./config/functions/functionBuku.php');
 $buku = query("SELECT * FROM buku INNER JOIN kategori ON buku.id_kategori = kategori.id_kategori");
 $awalData = 0;
-$jumlahDataPerhalaman = 2;
+$jumlahDataPerhalaman = 5;
 $jumlahData = count(query("SELECT * FROM buku"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);

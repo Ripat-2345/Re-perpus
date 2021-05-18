@@ -2,7 +2,7 @@
 include('./config/functions/functionPetugas.php');
 $petugas = query("SELECT * FROM petugas");
 $awalData = 0;
-$jumlahDataPerhalaman = 2;
+$jumlahDataPerhalaman = 5;
 $jumlahData = count(query("SELECT * FROM petugas"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);

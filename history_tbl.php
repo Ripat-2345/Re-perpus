@@ -2,7 +2,7 @@
 include('./config/functions/functionPeminjaman.php');
 $peminjaman = query("SELECT id_peminjaman,judul,nama_petugas,nama_siswa,peminjaman.status FROM peminjaman INNER JOIN buku ON peminjaman.id_buku = buku.id_buku INNER JOIN siswa ON peminjaman.nis = siswa.nis INNER JOIN petugas ON peminjaman.id_petugas = petugas.id_petugas ");
 $awalData = 0;
-$jumlahDataPerhalaman = 2;
+$jumlahDataPerhalaman = 5;
 $jumlahData = count(query("SELECT * FROM peminjaman"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);

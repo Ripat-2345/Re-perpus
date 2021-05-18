@@ -2,7 +2,7 @@
 include('./config/functions/functionKategori.php');
 $kategori = query("SELECT * FROM kategori");
 $awalData = 0;
-$jumlahDataPerhalaman = 2;
+$jumlahDataPerhalaman = 5;
 $jumlahData = count(query("SELECT * FROM kategori"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
